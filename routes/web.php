@@ -10,6 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// 用户模块
+
+// 注册页面
+Route::get('/register', 'RegisterController@index');
+// 注册行为
+Route::post('/register', 'RegisterController@register');
+// 登录页面
+Route::get('/login', 'LoginController@index');
+// 登录行为
+Route::post('/login', 'LoginController@login');
+// 登出行为
+Route::get('/logout', 'LoginController@logout');
+// 个人设置
+Route::get('/user/me/setting', 'UserController@setting');
+// 个人设置操作
+Route::post('/user/me/setting', 'UserController@settingStore');
+
 // 文章列表页
 Route::get('/posts', 'PostController@index');
 // 创建文章
