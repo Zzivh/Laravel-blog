@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -30,9 +31,10 @@ class PostController extends Controller
             'title' => 'required|string|max:100|min:5',
             'content' => 'required|string|min:10',
         ]);
-
         // 逻辑
-        $post = Post::create(\request(['title', 'content']));
+        $user_id = Auth::id();
+        $params = array_merge(\request(['title', 'content']), compact('user_id'));
+        $post = Post::create($params);
 
         // 跳转
         return redirect('/posts');
@@ -46,22 +48,23 @@ class PostController extends Controller
     public function update(Post $post)
     {
         // 验证
-        $this->validate(\request(), [
+        $this->validate(request(), array(
             'title' => 'required|string|max:100|min:5',
-            'content' => 'required|string|min:10',
-        ]);
-        // 逻辑
-        $post->title = \request('title');
-        $post->content = \request('content');
+            'content' => 'required|string|min:10'
+        ));
+        $this->authorize('delete', $post);
+        //逻辑
+        $post->title = request('title');
+        $post->content = request('content');
         $post->save();
         // 渲染
-        return redirect("/post/{$post->id}");
+        return redirect("/posts/{$post->id}");
     }
     // 删除逻辑
     public function delete(Post $post)
     {
         // TODO:用户的权限验证
-
+        $this->authorize('delete', $post);
         $post->delete();
         return redirect("/posts");
     }
