@@ -35,6 +35,8 @@ Route::get('/posts/create', 'PostController@create');
 Route::post('posts', 'PostController@store');
 // 文章详情页
 Route::get('/posts/{post}', 'PostController@show');
+Route::get('/posts/{post}/zan', 'PostController@zan');
+Route::get('/posts/{post}/unzan', 'PostController@unzan');
 // 编辑文章
 Route::get('/posts/{post}/edit', 'PostController@edit');
 Route::put('posts/{post}', 'PostController@update');
@@ -42,3 +44,5 @@ Route::put('posts/{post}', 'PostController@update');
 Route::get('/posts/{post}/delete', 'PostController@delete');
 // 图片上传
 Route::post('/posts/image/upload', 'PostController@imageUpload');
+// 提交评论
+Route::post('/posts/{post}/comment', 'PostController@comment');
