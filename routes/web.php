@@ -30,6 +30,8 @@ Route::post('/user/me/setting', 'UserController@settingStore');
 
 // 文章列表页
 Route::get('/posts', 'PostController@index');
+// 文章搜索页
+Route::get('/posts/search', 'PostController@search');
 // 创建文章
 Route::get('/posts/create', 'PostController@create');
 Route::post('posts', 'PostController@store');
@@ -46,3 +48,4 @@ Route::get('/posts/{post}/delete', 'PostController@delete');
 Route::post('/posts/image/upload', 'PostController@imageUpload');
 // 提交评论
 Route::post('/posts/{post}/comment', 'PostController@comment');
+
