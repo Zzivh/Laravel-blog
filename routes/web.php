@@ -48,4 +48,9 @@ Route::get('/posts/{post}/delete', 'PostController@delete');
 Route::post('/posts/image/upload', 'PostController@imageUpload');
 // 提交评论
 Route::post('/posts/{post}/comment', 'PostController@comment');
+// 个人中心
+Route::get('/user/{user}', 'UserController@show');
+// 赞
+Route::post('/user/{user}/fan', 'UserController@fan');
+Route::post('/user/{user}/unfan', 'UserController@unfan');
 
