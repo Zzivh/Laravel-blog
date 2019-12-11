@@ -54,3 +54,8 @@ Route::get('/user/{user}', 'UserController@show');
 Route::post('/user/{user}/fan', 'UserController@fan');
 Route::post('/user/{user}/unfan', 'UserController@unfan');
 
+// 专题详情页
+Route::get('/topic/{topic}', 'TopicController@show');
+// 投稿
+Route::post('/topic/{topic}/submit', 'TopicController@submit');
+
