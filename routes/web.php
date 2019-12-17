@@ -29,7 +29,7 @@ Route::get('/user/me/setting', 'UserController@setting');
 Route::post('/user/me/setting', 'UserController@settingStore');
 
 // 文章列表页
-Route::get('/posts', 'PostController@index');
+Route::get('/posts', 'PostController@index')->name('posts');
 // 文章搜索页
 Route::get('/posts/search', 'PostController@search');
 // 创建文章
@@ -59,3 +59,4 @@ Route::get('/topic/{topic}', 'TopicController@show');
 // 投稿
 Route::post('/topic/{topic}/submit', 'TopicController@submit');
 
+include_once('admin.php');
